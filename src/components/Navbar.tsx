@@ -1,25 +1,23 @@
 "use client";
-import React, { useState } from "react";
-import { HoveredLink, Menu, MenuItem, ProductItem } from "@/components/ui/navbar-menu";
-import { cn } from "@/lib/utils";
+import React, {useState} from "react";
+import {HoveredLink, Menu, MenuItem, ProductItem} from "@/components/ui/navbar-menu";
+import {cn} from "@/lib/utils";
 
-export function Navbar({ className }: { className?: string }) {
+export function Navbar({className}: { className?: string }) {
     const [active, setActive] = useState<string | null>(null);
     return (
         <div
-            className={cn("fixed inset-x-0 mx-auto z-50 dark", className)}
+            className={cn("fixed inset-x-0 mx-auto z-50", className)}
         >
             <Menu setActive={setActive}>
                 <div className="justify-start items-start text-left">23123</div>
-                <MenuItem setActive={setActive} active={active} item="Services">
+                <MenuItem setActive={setActive} active={active} item="了解我们">
                     <div className="flex flex-col space-y-4 text-sm">
-                        <HoveredLink href="/web-dev">Web Development</HoveredLink>
-                        <HoveredLink href="/interface-design">Interface Design</HoveredLink>
-                        <HoveredLink href="/seo">Search Engine Optimization</HoveredLink>
-                        <HoveredLink href="/branding">Branding</HoveredLink>
+                        <HoveredLink href="/about"> 关于我们 </HoveredLink>
+                        <HoveredLink href="/about-54sh"> 关于升华工作室 </HoveredLink>
                     </div>
                 </MenuItem>
-                <MenuItem setActive={setActive} active={active} item="Products">
+                <MenuItem setActive={setActive} active={active} item="近期作品">
                     <div className="text-sm grid grid-cols-2 gap-10 p-4">
                         <ProductItem
                             title="Algochurn"
@@ -47,7 +45,7 @@ export function Navbar({ className }: { className?: string }) {
                         />
                     </div>
                 </MenuItem>
-                <MenuItem setActive={setActive} active={active} item="Pricing">
+                <MenuItem setActive={setActive} active={active} item="更多">
                     <div className="flex flex-col space-y-4 text-sm">
                         <HoveredLink href="/hobby">Hobby</HoveredLink>
                         <HoveredLink href="/individual">Individual</HoveredLink>

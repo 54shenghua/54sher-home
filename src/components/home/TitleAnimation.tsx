@@ -8,7 +8,7 @@ import {zhiMangXing} from "@/app/fonts/fonts";
 
 const TitleAnimation = () => {
     return (
-        <div className="dark">
+        <div>
             <AuroraBackground>
                 <motion.div
                     initial={{opacity: 0.0, y: 40}}
