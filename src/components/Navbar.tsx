@@ -1,14 +1,14 @@
 "use client";
-import React, {useState} from "react";
-import {HoveredLink, Menu, MenuItem, ProductItem} from "@/components/ui/navbar-menu";
-import {cn} from "@/lib/utils";
+import React, { useState } from "react";
+import { HoveredLink, Menu, MenuItem, ProductItem } from "@/components/ui/navbar-menu";
+import { cn } from "@/lib/utils";
+import type { SanityDocument } from "next-sanity";
 
-export function Navbar({className}: { className?: string }) {
+export function Navbar({ className, projects }: { className?: string, projects: SanityDocument[] }) {
     const [active, setActive] = useState<string | null>(null);
+
     return (
-        <div
-            className={cn("fixed inset-x-0 mx-auto z-50", className)}
-        >
+        <div className={cn("fixed inset-x-0 mx-auto z-50", className)}>
             <Menu setActive={setActive}>
                 <div className="justify-start items-start text-left">23123</div>
                 <MenuItem setActive={setActive} active={active} item="了解我们">
@@ -19,38 +19,27 @@ export function Navbar({className}: { className?: string }) {
                 </MenuItem>
                 <MenuItem setActive={setActive} active={active} item="近期作品">
                     <div className="text-sm grid grid-cols-2 gap-10 p-4">
-                        <ProductItem
-                            title="Algochurn"
-                            href="https://algochurn.com"
-                            src="https://assets.aceternity.com/demos/algochurn.webp"
-                            description="Prepare for tech interviews like never before."
-                        />
-                        <ProductItem
-                            title="Tailwind Master Kit"
-                            href="https://tailwindmasterkit.com"
-                            src="https://assets.aceternity.com/demos/tailwindmasterkit.webp"
-                            description="Production ready Tailwind css components for your next project"
-                        />
-                        <ProductItem
-                            title="Moonbeam"
-                            href="https://gomoonbeam.com"
-                            src="https://assets.aceternity.com/demos/Screenshot+2024-02-21+at+11.51.31%E2%80%AFPM.png"
-                            description="Never write from scratch again. Go from idea to blog in minutes."
-                        />
-                        <ProductItem
-                            title="Rogue"
-                            href="https://userogue.com"
-                            src="https://assets.aceternity.com/demos/Screenshot+2024-02-21+at+11.47.07%E2%80%AFPM.png"
-                            description="Respond to government RFPs, RFIs and RFQs 10x faster using AI"
-                        />
+                        {projects.slice(0, 4).map((project) => (
+                            <ProductItem
+                                key={project._id}
+                                title={project.projectName}
+                                href={project.deployUrl}
+                                src={project.screenshotUrl}
+                                description={project.description}
+                            />
+                        ))}
+                    </div>
+                </MenuItem>
+                <MenuItem setActive={setActive} active={active} item="时间线">
+                    <div className="flex flex-col space-y-4 text-sm">
+                        <HoveredLink href="/history"> 升华历史时间线 </HoveredLink>
                     </div>
                 </MenuItem>
                 <MenuItem setActive={setActive} active={active} item="更多">
                     <div className="flex flex-col space-y-4 text-sm">
-                        <HoveredLink href="/hobby">Hobby</HoveredLink>
-                        <HoveredLink href="/individual">Individual</HoveredLink>
-                        <HoveredLink href="/team">Team</HoveredLink>
-                        <HoveredLink href="/enterprise">Enterprise</HoveredLink>
+                        <HoveredLink href="mailto:grtsinry43@outlook.com"> 联系我们 </HoveredLink>
+                        <HoveredLink href="/message"> 留言板 </HoveredLink>
+                        <HoveredLink href="https://joinus.54sher.com"> 加入我们 </HoveredLink>
                     </div>
                 </MenuItem>
             </Menu>
